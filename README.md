@@ -1,116 +1,39 @@
-# AngularJS-Boilerplate
-Simple AngularJS Boilerplate to kick start your new project with SASS support and Gulp watch/build tasks
+## Angular Starter
 
-# Features
-* SASS support including sourceMaps
-* Minimal CSS styling of the view
-* Gulp watch, build and local server tasks
-* Responsive navigation
-* Owl slider directive
-* localStorage service for set, get, remove data
-* queryService $http wrapper to handle calls
-* clear folder structure
-* less than 10 request in build version
-* minified CSS and JS build files
-* google analytics snippet
+### Minimal Angular.js app
 
-## Download
-```bash
-bower install angularjs-boilerplate
-```
+Angular Starter is a minimal [AngularJS](http://angularjs.org/) HTML5 application to get your web app project started. The main goal of this project is to provide the basic structure for **Angular.js** projects with preconfigured **testing** and **Continuous Integration** setup.
 
-or
+### How minimal?
+- Angular Starter application has 3 minimal pages with navigation between them.
+- Angular Starter application has a defined structure with separated controllers and views.
+- Angular Started application has few simple examples of Angular.js app http communication with Restful APIs.
+- Angular Starter application has unit and end 2 end tests configured so you can dive into TDD and BDD haven.
+- Angular Starter application has Continuous Integration configured to perfrom testing on every GitHub code push. Its like having an additional QA team member!
+- That's all!
 
-```bash
-git clone https://github.com/jbutko/AngularJS-Boilerplate.git
-```
+Summary of how this project was created together with the detailed component walkthrough can be found on [HTMLCenter Blog](http://www.htmlcenter.com/blog/building-angular-js-starter-application). Below is a simple start-up guide.
 
-## 1. Setup
-```bash
-npm install
-```
-- install all npm and bower dependencies
+### How to start Angular Starter
 
-**Note:** If `npm install` fails during dependency installation it will be likely caused by `gulp-imagemin`. In that case remove `gulp-imagemin` dependency from `package.json`, run `npm install` again and then install `gulp-imagemin` separately with following command: `npm install gulp-imagemin --save-dev`
+How to start, test and use Angular Starter? First, you need [Node.js](https://nodejs.org/) to be installed in your dev environment as Angular Starter project depends on it. Next, you should clone Angular Starter project to your dev environment:
+    
+    git clone https://github.com/popularowl/angular-starter.git
+    
+Once the project is cloned you can use the following commands to run and test the project:
 
-## 2. Watch files
-```bash
-gulp
-```
-- all SCSS/HTML will be watched for changes and injected into browser thanks to BrowserSync
+- **npm start** (will start the local web server on localhost:8000)
+- **npm test** (will start karma for countinous testing once code changes are detected)
+- **npm test-single-run** (will start karma for one single test run)
 
-## 3. Build production version
-```bash
-gulp build
-```
-- this will process following tasks:
-* clean _build folder
-* compile SASS files, minify and uncss compiled css
-* copy and optimize images
-* minify and copy all HTML files into $templateCache
-* build index.html
-* minify and copy all JS files
-* copy fonts
-* show build folder size
+Above commands are defined in the **package.json** configuration file in the root of the project. Check it out to understand what is exactly executed once above commands are run.
 
-## 4. Start webserver without watch task
-```bash
-gulp server
-```
 
-## 5. Start webserver from build folder
-```bash
-gulp server-build
-```
+### Contributing to the project
 
-## Contact
-Copyright (C) 2015 Jozef Butko<br>
-[www.jozefbutko.com/resume](http://www.jozefbutko.com/resume)<br>
-[www.github.com/jbutko](http://www.github.com/jbutko)<br>
-[@jozefbutko](http://www.twitter.com/jozefbutko)<br>
-Released under MIT license
+All feedback and suggested improvements are very welcome. You can always [create an issue](https://github.com/PopularOwl/angular-starter/issues) for this repositary or issue a pull request.
 
-## Changelog
-### 1.1.7
-- Install all dependencies with 'npm install' (bower included) - pull req #7 by @bbodine1<br>
-15.05.2015
+### Authors
 
-### 1.1.6
-- Cleaned up the gulpfile with gulp-load-plugins - pull req #6 by @davieschoots<br>
-26.04.2015
+This project is created and maintained by [Saulius Zukauskas](https://github.com/sauliuz)  and is one of [PopularOwl Labs](http://www.popularowl.com/) open source projects. Enjoy!
 
-### 1.1.5
-- added MIT License<br>
-19.04.2015
-
-### 1.1.4
-- added minification of JS files in build task<br>
-- added favicon<br>
-- gulpfile.js beautify and clean up<br>
-- added owl carousel into demo<br>
-04.04.2015
-
-### 1.1.3
-- index.html update: added browserupgrade tag<br>
-- index.html update: http-equiv meta tag, google analytics support<br>
-- comments update in gulpfile.js<br>
-- gulpfile.js formatting<br>
-- pull request #1: removed duplicate gulp require in gulpfile.js<br>
-04.04.2015
-
-### 1.1.2
-- package.json and gulpfile.js clean up<br>
-02.04.2015
-
-### 1.1.1
-- opened responsive nav fix, css build .min appendix, live demo, github icons<br>
-31.03.2015
-
-### 1.1.0
-- many improvements: responsive nav, code clean up, gulp angular templateCache
-support, gulp task for local server, SASS sourceMaps support<br>
-29.03.2015
-
-### 1.0.0
-- initial release<br>
-22.03.2015
