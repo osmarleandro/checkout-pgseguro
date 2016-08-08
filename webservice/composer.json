@@ -1,0 +1,12 @@
+{
+  "require": {
+    "dynastyking/database": "dev-master",
+    "slim/slim": "2.*"
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "git@bitbucket.org:DynastyKing/database.git"
+    }
+  ]
+}
