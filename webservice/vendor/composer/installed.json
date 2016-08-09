@@ -1,0 +1,78 @@
+[
+    {
+        "name": "dynastyking/database",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "git@bitbucket.org:DynastyKing/database.git",
+            "reference": "e7db0722ac9c2ef11473a27af5023feb0e2d9b46"
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2016-05-20 21:19:22",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "dynastyking\\database\\": "src/"
+            }
+        },
+        "authors": [
+            {
+                "name": "DynastyKing",
+                "email": "arbezerra@gmail.com"
+            }
+        ],
+        "description": "Database connection class"
+    },
+    {
+        "name": "slim/slim",
+        "version": "2.6.2",
+        "version_normalized": "2.6.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/slimphp/Slim.git",
+            "reference": "20a02782f76830b67ae56a5c08eb1f563c351a37"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/slimphp/Slim/zipball/20a02782f76830b67ae56a5c08eb1f563c351a37",
+            "reference": "20a02782f76830b67ae56a5c08eb1f563c351a37",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "suggest": {
+            "ext-mcrypt": "Required for HTTP cookie encryption"
+        },
+        "time": "2015-03-08 18:41:17",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Slim": "."
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Josh Lockhart",
+                "email": "info@joshlockhart.com",
+                "homepage": "http://www.joshlockhart.com/"
+            }
+        ],
+        "description": "Slim Framework, a PHP micro framework",
+        "homepage": "http://github.com/codeguy/Slim",
+        "keywords": [
+            "microframework",
+            "rest",
+            "router"
+        ]
+    }
+]
