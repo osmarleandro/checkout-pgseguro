@@ -10,6 +10,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_erros', 1);
 error_reporting(E_ALL);
 require __DIR__."/vendor/autoload.php";
+require __DIR__ . "/class/PagSeguroLibrary/PagSeguroLibrary.php";
 $app = new \Slim\Slim();
 
 $app->add(new \Slim\Middleware\SessionCookie(array('secret' => 'myappsecret')));
@@ -33,6 +34,60 @@ $app->hook('slim.before.dispatch', function() use ($app) {
         $user = $_SESSION['user'];
     }
     $app->view()->setData('user', $user);
+});
+$app->post('/checkout', function () use ($app) {
+    $app->response()->header('Content-Type', 'application/json');
+    $input=json_decode($app->request()->getBody(),true);
+    $con=new \dynastyking\database\Connection();
+    $paymentRequest = new PagSeguroPaymentRequest();
+    $con->beginTransaction();
+    $len=count($input['produtos']);
+    $produto=new \web2\Produto();
+    $valortotal=0.0;
+    for($i=1;$i<=$len;$i++) {
+        $produto->valorpk=$input['produtos']['id'];
+        $result=$produto->select($con);
+        if($result['qtd']<$input['produtos']['quantidade']){
+            echo json_encode(array("error"=>"Quantidade de %s maior que o estoque."%$result['descricao']));
+            $con->rollBack();
+            $app->halt(200);
+        }
+        $valortotal+=$input['produtos']['quantidade']*$result['preco'];
+        $paymentRequest->addItem("$i", $result['descricao'], $input['produtos']['quantidade'], $result['preco']);
+    }
+    $paymentRequest->setCurrency("BRL");
+    $paymentRequest->setReference("REF123");
+    $paymentRequest->setRedirectUrl("http://vendasweb2.vxreal.com");
+    $paymentRequest->addParameter('notificationURL', 'http://vendasweb2.vxreal.com/webservice/notification');
+    try {
+        $credentials = PagSeguroConfig::getAccountCredentials();
+        $checkoutUrl = $paymentRequest->register($credentials);
+        $compra=new \web2\Compra();
+        $compra->setValor("cliente_id",$_SESSION['user']['id']);
+        $compra->setValor("valor_total",$valortotal);
+        $compra->setValor("status",0);
+        if(!$compra->insert($con)){
+            $con->rollBack();
+            $app->halt(500);
+        }
+        $compra_id=$con->getLastID();
+        $compraproduto=new \web2\CompraProduto();
+        for($i=1;$i<=$len;$i++) {
+            $compraproduto->setValor("compra_id",$compra_id);
+            $compraproduto->setValor("produto_id",$input['produtos'][$i]['id']);
+            $compraproduto->setValor("quantidade",$input['produtos'][$i]['quantidade']);
+            if(!$compraproduto->insert($con)){
+                $con->rollBack();
+                $app->halt(500);
+            }
+        }
+
+        echo json_encode(array("url" => $checkoutUrl));
+        $con->commit();
+    } catch (PagSeguroServiceException $e){
+        $con->rollBack();
+        $app->halt(500);
+    }
 });
 $app->post('/login', function () use ($app) {
     $app->response()->header('Content-Type', 'application/json');

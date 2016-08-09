@@ -1,33 +1,5 @@
 [
     {
-        "name": "dynastyking/database",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "git@bitbucket.org:DynastyKing/database.git",
-            "reference": "e7db0722ac9c2ef11473a27af5023feb0e2d9b46"
-        },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "time": "2016-05-20 21:19:22",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-4": {
-                "dynastyking\\database\\": "src/"
-            }
-        },
-        "authors": [
-            {
-                "name": "DynastyKing",
-                "email": "arbezerra@gmail.com"
-            }
-        ],
-        "description": "Database connection class"
-    },
-    {
         "name": "slim/slim",
         "version": "2.6.2",
         "version_normalized": "2.6.2.0",
@@ -74,5 +46,33 @@
             "rest",
             "router"
         ]
+    },
+    {
+        "name": "dynastyking/database",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "git@bitbucket.org:DynastyKing/database.git",
+            "reference": "e7db0722ac9c2ef11473a27af5023feb0e2d9b46"
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2016-05-20 21:19:22",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "dynastyking\\database\\": "src/"
+            }
+        },
+        "authors": [
+            {
+                "name": "DynastyKing",
+                "email": "arbezerra@gmail.com"
+            }
+        ],
+        "description": "Database connection class"
     }
 ]
