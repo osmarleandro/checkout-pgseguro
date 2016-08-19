@@ -1,10 +1,28 @@
 {
-  "name": "webii-cart-pagseguro",
+  "name": "angularjs-cart-pagseguro",
+  "version": "1.0.0",
+  "description": "This design makes the integration of a shopping cart, developed in AngularJS 1.5, and online payment API PagSeguro, in PHP language.",
   "private": true,
-  "version": "0.0.1",
-  "description": "Angular.js starter application",
-  "repository": "https://github.com/popularowl/angular-starter",
-  "license": "MIT",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server -c-1 -o"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/osmarleandro/webii-cart-pagseguro.git"
+  },
+  "keywords": [
+    "angularjs",
+    "cart",
+    "pagseguro"
+  ],
+  "author": "Osmar Leandro <gitlab.com/osmarleandro>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/osmarleandro/webii-cart-pagseguro/issues"
+  },
+  "homepage": "https://gitlab.com/osmarleandro/webii-cart-pagseguro#README",
   "devDependencies": {
     "http-server": "0.6.x"
   },
@@ -16,8 +34,5 @@
     "angular-ui-bootstrap": "^2.0.1",
     "bootstrap": "^3.3.7",
     "jquery": "^3.1.0"
-  },
-  "scripts": {
-    "start": "http-server -c-1 -o"
   }
 }
