@@ -1,8 +1,4 @@
-﻿/*!
- * Extend Bootstrap v2.3.1 to provide cell alignment (doh)
- *
- */
-.table td.tdRight {
+﻿.table td.tdRight {
   text-align: right;
 }
 .table td.tdCenter {

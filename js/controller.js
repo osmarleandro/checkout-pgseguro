@@ -3,8 +3,7 @@
 // the storeController contains two objects:
 // - store: contains the product list
 // - cart: the shopping cart object
-function storeController($scope, $routeParams, DataService) {
-
+function storeController($scope, $routeParams, $http, DataService) {
     // get store and cart from service
     $scope.store = DataService.store;
     $scope.cart = DataService.cart;

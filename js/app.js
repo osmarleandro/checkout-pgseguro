@@ -37,11 +37,7 @@ storeApp.factory("DataService", function () {
     // https://www.paypal.com/webapps/mpp/merchant
     myCart.addCheckoutParameters("PayPal", "paypaluser@youremail.com");
 
-    // enable Google Wallet checkout
-    // note: the second parameter identifies the merchant; in order to use the 
-    // shopping cart with Google Wallet, you have to create a merchant account with 
-    // Google. You can do that here:
-    // https://developers.google.com/commerce/wallet/digital/training/getting-started/merchant-setup
+    // enable PagSeguro checkout
     myCart.addCheckoutParameters("PagSeguro", "pagsegurouser@pagseguro.com.br");
 
     // return data object with store and cart

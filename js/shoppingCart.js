@@ -1,5 +1,4 @@
-﻿
-function shoppingCart(cartName) {
+﻿function shoppingCart(cartName) {
     this.cartName = cartName;
     this.clearCart = false;
     this.checkoutParameters = {};
@@ -58,9 +57,8 @@ shoppingCart.prototype.addItem = function (idProduct, name, price, quantity) {
             if (item.id == idProduct) {
                 found = true;
                 item.quantity = this.toNumber(item.quantity + quantity);
-                if (item.quantity <= 0) {
+                if (item.quantity <= 0)
                     this.items.splice(i, 1);
-                }
             }
         }
 
@@ -102,6 +100,7 @@ shoppingCart.prototype.getTotalCount = function (idProduct) {
 shoppingCart.prototype.clearItems = function () {
     this.items = [];
     this.saveItems();
+    console.log($scope.tituloPrograma + "AQUI");
 }
 
 // define checkout parameters
@@ -130,7 +129,7 @@ shoppingCart.prototype.checkout = function (serviceName, clearCart) {
 
     // sanity
     if (serviceName == null) {
-        throw "Use the 'addCheckoutParameters' method to define at least one checkout service.";
+        throw "Use o método 'addCheckoutParameters' para definir pelo menos um serviço de checkout.";
     }
 
     // go to work
@@ -143,7 +142,7 @@ shoppingCart.prototype.checkout = function (serviceName, clearCart) {
             this.checkoutPayPal(parms, clearCart);
             break;
         case "PagSeguro":
-            this.checkoutGoogle(parms, clearCart);
+            this.checkoutPagSeguro(parms, clearCart);
             break;
         default:
             throw "Serviço desconhecido: " + parms.serviceName;
@@ -158,6 +157,7 @@ shoppingCart.prototype.checkoutPayPal = function (parms, clearCart) {
     // global data
     var data = {
         cmd: "_cart",
+        currency_code: "BRL",
         business: parms.merchantID,
         upload: "1",
         rm: "2",
@@ -225,18 +225,13 @@ shoppingCart.prototype.toNumber = function (value) {
     return isNaN(value) ? 0 : value;
 }
 
-//----------------------------------------------------------------
-// checkout parameters (one per supported payment service)
-//
 function checkoutParameters(serviceName, merchantID, options) {
     this.serviceName = serviceName;
     this.merchantID = merchantID;
     this.options = options;
 }
 
-//----------------------------------------------------------------
 // items in the cart
-//
 function cartItem(sku, name, price, quantity) {
     this.id = sku;
     this.name = name;

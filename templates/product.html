@@ -1,92 +1,94 @@
-﻿<div class="row">
-    <div class="col-md-8">
+﻿<div class="container">
+    <div class="row">
+        <div class="col-md-8">
 
-        <table class="table table-bordered">
+            <table class="table table-bordered">
 
-            <tr class="well">
-                <td class="tdRight" colspan="3">
-                    <a href="default.htm#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
-                        <i class="icon-shopping-cart"/>
-                        <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
-                        <span ng-show="cart.getTotalCount(product.id) > 0"><br/>Este item já esta no carrinho</span>
-                    </a>
-                </td>
-            </tr>
+                <tr class="well">
+                    <td class="tdRight" colspan="3">
+                        <a href="#/cart" title="Ir para o carrinho" ng-disabled="cart.getTotalCount() < 1">
+                            <i class="icon-shopping-cart"/>
+                            <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
 
-            <tr>
-                <td class="tdCenter" colspan="3"><img ng-src="{{product.img}}" alt="{{product.name}}" width="25%"/>
-                    <h2>{{product.name}}</h2></td>
-            </tr>
+                        </a><span ng-show="cart.getTotalCount(product.id) > 0"><br/>Este item já esta no carrinho</span>
+                    </td>
+                </tr>
 
-            <tr>
-                <td class="tdCenter" colspan="3"><h2>Especificações</h2></td>
-            </tr>
+                <tr>
+                    <td class="tdCenter" colspan="3"><img ng-src="{{product.img}}" alt="{{product.name}}" width="25%"/>
+                        <h2>{{product.name}}</h2></td>
+                </tr>
 
-            <tr>
-                <td class="tdCenter"><b>Descrição</b></td>
-                <td class="tdCenter"><p>{{product.description}}</p></td>
-            </tr>
+                <tr>
+                    <td class="tdCenter" colspan="3"><h2>Especificações</h2></td>
+                </tr>
 
-            <tr>
-                <td class="tdCenter"><b>Marca</b></td>
-                <td class="tdCenter"><p>{{product.trademark}}</p></td>
-            </tr>
+                <tr>
+                    <td class="tdCenter"><b>Descrição</b></td>
+                    <td class="tdCenter"><p>{{product.description}}</p></td>
+                </tr>
 
-            <tr>
-                <td class="tdCenter"><b>Preço</b></td>
-                <td class="tdCenter"><p>{{product.price}}</p></td>
-            </tr>
+                <tr>
+                    <td class="tdCenter"><b>Marca</b></td>
+                    <td class="tdCenter"><p>{{product.trademark}}</p></td>
+                </tr>
 
-            <tr>
-                <td class="tdCenter"><b>Memória Interna</b></td>
-                <td class="tdCenter"><p>{{product.internalMemory}} GB</p></td>
-            </tr>
+                <tr>
+                    <td class="tdCenter"><b>Preço</b></td>
+                    <td class="tdCenter"><p>{{product.price}}</p></td>
+                </tr>
 
-            <tr>
-                <td class="tdCenter"><b>Memória RAM</b></td>
-                <td class="tdCenter"><p>{{product.ram}} GB</p></td>
-            </tr>
+                <tr>
+                    <td class="tdCenter"><b>Memória Interna</b></td>
+                    <td class="tdCenter"><p>{{product.internalMemory}} GB</p></td>
+                </tr>
 
-            <tr>
-                <td class="tdCenter"><b>Processador</b></td>
-                <td class="tdCenter"><p>{{product.processor}}</p></td>
-            </tr>
+                <tr>
+                    <td class="tdCenter"><b>Memória RAM</b></td>
+                    <td class="tdCenter"><p>{{product.ram}} GB</p></td>
+                </tr>
 
-            <tr>
-                <td class="tdCenter"><b>Versão do Sistema Operacional</b></td>
-                <td class="tdCenter"><p>{{product.soVersion}}</p></td>
-            </tr>
+                <tr>
+                    <td class="tdCenter"><b>Processador</b></td>
+                    <td class="tdCenter"><p>{{product.processor}}</p></td>
+                </tr>
 
-            <tr>
-                <td class="tdCenter"><b>Câmera Principal</b></td>
-                <td class="tdCenter"><p>{{product.mainCam}} MP</p></td>
-            </tr>
+                <tr>
+                    <td class="tdCenter"><b>Versão do Sistema Operacional</b></td>
+                    <td class="tdCenter"><p>{{product.soVersion}}</p></td>
+                </tr>
 
-            <tr>
-                <td class="tdCenter"><b>Câmera Frontal</b></td>
-                <td class="tdCenter"><p>{{product.frontalCam}} MP</p></td>
-            </tr>
+                <tr>
+                    <td class="tdCenter"><b>Câmera Principal</b></td>
+                    <td class="tdCenter"><p>{{product.mainCam}} MP</p></td>
+                </tr>
 
-        </table>
-    </div>
+                <tr>
+                    <td class="tdCenter"><b>Câmera Frontal</b></td>
+                    <td class="tdCenter"><p>{{product.frontalCam}} MP</p></td>
+                </tr>
 
-    <!-- buttons -->
-    <div class="col-md-4">
-        <button
-                class="btn btn-block btn-success"
-                ng-click="cart.addItem(product.id, product.name, product.price, 1)">
-            <i class="icon-shopping-cart icon-white"/> Add ao Carrinho
-        </button>
-        <button
-                class="btn btn-block btn-danger"
-                ng-click="cart.addItem(product.id, product.name, product.price, -10000)"
-                ng-disabled="cart.getTotalCount(product.id) < 1">
-            <i class="icon-trash icon-white"/> Remover do Carrinho
-        </button>
-        <button
-                class="btn btn-block"
-                onclick="window.location.href=''">
-            <i class="icon-chevron-left"/> Voltar a Loja
-        </button>
+            </table>
+        </div>
+
+        <!-- buttons -->
+        <div class="col-md-4">
+            <button
+                    class="btn btn-block btn-success"
+                    ng-click="cart.addItem(product.id, product.name, product.price, 1)">
+                <span class="glyphicon glyphicon-shopping-cart"></span> Add ao Carrinho
+            </button>
+            <button
+                    class="btn btn-block btn-danger"
+                    ng-click="cart.addItem(product.id, product.name, product.price, -10000)"
+                    ng-disabled="cart.getTotalCount(product.id) < 1">
+                <i class="icon-trash icon-white"/> Remover do Carrinho
+            </button>
+            <button
+                    class="btn btn-block"
+                    onclick="window.location.href=''">
+                <i class="icon-chevron-left"/> Voltar a Loja
+            </button>
+        </div>
     </div>
 </div>

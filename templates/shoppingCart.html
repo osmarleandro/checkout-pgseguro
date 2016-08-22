@@ -1,122 +1,115 @@
-﻿<p class="text-info">
-    Obrigado por comprar conosco!<br/>
-    Este é o seu carrinho de compras. Seleciona uma opção de pagamento, remova itens, adicione itens ou volte para a
-    loja.
-</p>
+﻿<div class="container">
+    <p class="text-info">
+        Obrigado por comprar conosco!<br/>
+        Este é o seu carrinho de compras: selecione uma opção de pagamento, remova itens, adicione itens ou volte para a loja.
+    </p>
+    <div class="row">
+        <div class="col-md-8">
 
-<div class="container">
-    <div class="span8">
+            <table class="table table-bordered">
 
-        <!-- items -->
-        <table class="table table-bordered">
+                <tr class="well">
+                    <td><b>Item</b></td>
+                    <td class="tdCenter"><b>Quantidade</b></td>
+                    <td class="tdRight"><b>Preço</b></td>
+                    <td/>
+                </tr>
 
-            <!-- header -->
-            <tr class="well">
-                <td><b>Item</b></td>
-                <td class="tdCenter"><b>Quantidade</b></td>
-                <td class="tdRight"><b>Preço</b></td>
-                <td/>
-            </tr>
+                <tr ng-hide="cart.getTotalCount() > 0">
+                    <td class="tdCenter" colspan="4">
+                        Seu carrinho esta vazio
+                    </td>
+                </tr>
 
-            <!-- empty cart message -->
-            <tr ng-hide="cart.getTotalCount() > 0">
-                <td class="tdCenter" colspan="4">
-                    Seu carrinho esta vazio
-                </td>
-            </tr>
+                <tr ng-repeat="item in cart.items | orderBy:'name'">
+                    <td>{{item.name}}</td>
+                    <td class="tdCenter">
+                        <div class="input-append">
+                            <input
+                                    class="span3 text-center" type="tel"
+                                    ng-model="item.quantity"
+                                    ng-change="cart.saveItems()"/>
+                            <button
+                                    class="btn btn-success" type="button"
+                                    ng-disabled="item.quantity >= 1000"
+                                    ng-click="cart.addItem(item.id, item.name, item.price, +1)">+
+                            </button>
+                            <button
+                                    class="btn btn-inverse" type="button"
+                                    ng-disabled="item.quantity <= 1"
+                                    ng-click="cart.addItem(item.id, item.name, item.price, -1)">-
+                            </button>
+                        </div>
+                    </td>
+                    <td class="tdRight">{{item.price * item.quantity | currency}}</td>
+                    <td class="tdCenter" title="Remover do Carrinho">
+                        <a class="btn btn-danger" type="button"
+                           ng-click="cart.addItem(item.id, item.name, item.price, -10000000)">
+                            x
+                        </a>
+                    </td>
+                </tr>
 
-            <!-- cart items -->
-            <tr ng-repeat="item in cart.items | orderBy:'name'">
-                <td>{{item.name}}</td>
-                <td class="tdCenter">
-                    <div class="input-append">
-                        <!-- use type=tel instead of  to prevent spinners -->
-                        <input
-                                class="span3 text-center" type="tel"
-                                ng-model="item.quantity"
-                                ng-change="cart.saveItems()"/>
-                        <button
-                                class="btn btn-success" type="button"
-                                ng-disabled="item.quantity >= 1000"
-                                ng-click="cart.addItem(item.id, item.name, item.price, +1)">+
-                        </button>
-                        <button
-                                class="btn btn-inverse" type="button"
-                                ng-disabled="item.quantity <= 1"
-                                ng-click="cart.addItem(item.id, item.name, item.price, -1)">-
-                        </button>
-                    </div>
-                </td>
-                <td class="tdRight">{{item.price * item.quantity | currency}}</td>
-                <td class="tdCenter" title="remove from cart">
-                    <a href="" ng-click="cart.addItem(item.id, item.name, item.price, -10000000)">
-                        <i class="icon-remove"/>
-                    </a>
-                </td>
-            </tr>
+                <!-- footer -->
+                <tr class="well">
+                    <td><b>Total</b></td>
+                    <td class="tdCenter"><b>{{cart.getTotalCount()}}</b></td>
+                    <td class="tdRight"><b>{{cart.getTotalPrice() | currency}}</b></td>
+                    <td/>
+                </tr>
+            </table>
+        </div>
 
-            <!-- footer -->
-            <tr class="well">
-                <td><b>Total</b></td>
-                <td class="tdCenter"><b>{{cart.getTotalCount()}}</b></td>
-                <td class="tdRight"><b>{{cart.getTotalPrice() | currency}}</b></td>
-                <td/>
-            </tr>
-        </table>
-    </div>
+        <!-- buttons -->
+        <div class="col-md-4">
+            <p class="text-info">
+                <button
+                        class="btn btn-block"
+                        onclick="window.location.href='#'">
+                    <i class="icon-chevron-left"/> Voltar para a loja
+                </button>
+                <button
+                        class="btn btn-block btn-danger"
+                        ng-click="cart.clearItems()"
+                        ng-disabled="cart.getTotalCount() < 1">
+                    <span class="glyphicon glyphicon-shopping-cart"></span> Limpar o carrinho
+                </button>
+            </p>
 
-    <!-- buttons -->
-    <div class="span4">
-        <p class="text-info">
-            <button
-                    class="btn btn-block"
-                    onclick="window.location.href='#'">
-                <i class="icon-chevron-left"/> Voltar para a loja
-            </button>
-            <button
-                    class="btn btn-block btn-danger"
-                    ng-click="cart.clearItems()"
-                    ng-disabled="cart.getTotalCount() < 1">
-                <i class="icon-trash icon-white"/> Limpar o carrinho
-            </button>
-        </p>
+            <br/><br/>
 
-        <br/><br/>
+            <p class="text-info">
+                <button
+                        class="btn btn-success btn-block btn-link"
+                        ng-click="cart.checkout('PagSeguro')"
+                        ng-disabled="cart.getTotalCount() < 1">
+                    <img src="http://cohnjoias.com.br/wp-content/uploads/2013/03/pagseguro.jpg" width="60%"
+                         alt="checkoutSeguro"/>
+                </button>
 
-        <p class="text-info">
-            <button
-                    class="btn btn-block btn-primary"
-                    ng-click="cart.checkout('PagSeguro')"
-                    ng-disabled="cart.getTotalCount() < 1">
-                <i class="icon-ok icon-white"/> Comprar usando PagSeguro
-            </button>
-            <br>
-            <button
-                    class="btn btn-block btn-primary"
-                    ng-click="cart.checkout('PayPal')"
-                    ng-disabled="cart.getTotalCount() < 1">
-                <i class="icon-ok icon-white"/> Comprar usando PayPal
-            </button>
-        </p>
+                <a
+                        class="btn btn-block btn-success"
+                        ng-click="cart.checkout('PagSeguro')"
+                        ng-disabled="cart.getTotalCount() < 1">
+                    <span class="glyphicons glyphicon-alert"></span> Pagar usando PagSeguro
+                </a>
+                <br>
+                <button
+                        class="btn btn-block btn-link"
+                        ng-click="cart.checkout('PayPal')"
+                        ng-disabled="cart.getTotalCount() < 1">
+                    <img src="https://www.j2store.org/images/plugins_logo/paypal-express-checkout-logo.png"
+                         alt="checkout PayPal" width="50%"/>
+                </button>
 
-        <br/><br/>
+                <a
+                        class="btn btn-block btn-primary"
+                        ng-click="cart.checkout('PayPal')"
+                        ng-disabled="cart.getTotalCount() < 1">
+                    <span class="glyphicons glyphicon-alert"></span> Pagar usando PayPal
+                </a>
 
-        <p class="text-info">
-            <button
-                    class="btn btn-block btn-link"
-                    ng-click="cart.checkout('PagSeguro')"
-                    ng-disabled="cart.getTotalCount() < 1">
-                <img src="http://cohnjoias.com.br/wp-content/uploads/2013/03/pagseguro.jpg" width="50%"
-                     alt="checkoutSeguro"/>
-            </button>
-
-            <button
-                    class="btn btn-block btn-link"
-                    ng-click="cart.checkout('PayPal')"
-                    ng-disabled="cart.getTotalCount() < 1">
-                <img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" alt="checkout PayPal"/>
-            </button>
-
-        </p>
+            </p>
+        </div>
     </div>
 </div>

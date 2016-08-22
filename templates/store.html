@@ -1,45 +1,45 @@
-﻿<div class="container-fluid">
+﻿<div class="container">
     <p class="text-info">
-    Bem-vindo ao Angular Store.<br/>
-    Por favor, seleciona os produtos que deseja comprar para adicionar ao carrinho.<br/>
-    Depois, clique no carrinho e realize seu pagamento.
-</p>
+        Bem-vindo ao Angular Store.<br/>
+        Por favor, seleciona os produtos que deseja comprar para adicionar ao carrinho.<br/>
+        Depois, clique no carrinho e realize seu pagamento.
+    </p>
 
-<p>
-    Buscar: <input ng-model="search">
-</p>
+    <p>
+        Buscar: <input ng-model="search">
+    </p>
 
-<table class="table table-bordered">
-    <tr class="well">
-        <td class="tdRight" colspan="4">
-            <a href="#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
-                <i class="icon-shopping-cart"/>
-                <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
-            </a>
-        </td>
-    </tr>
-    <tr ng-repeat="product in store.products | orderBy:'name' | filter:search">
-        <td class="tdCenter"><img ng-src="{{product.img}}" alt="{{product.name}}" width="50%"/></td>
-        <td>
-            <a href="#/products/{{product.id}}"><b>{{product.name}}</b></a><br/>
-            {{product.description}}
-        </td>
-        <td class="tdRight">
-            {{product.price | currency }}
-        </td>
-        <td class="tdCenter">
-            <a href="" ng-click="cart.addItem(product.id, product.name, product.price, 1)">
-                add to cart
-            </a>
-        </td>
-    </tr>
-    <tr class="well">
-        <td class="tdRight" colspan="4">
-            <a href="#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
-                <i class="icon-shopping-cart"/>
-                <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
-            </a>
-        </td>
-    </tr>
-</table>
+    <table class="table table-bordered">
+        <tr class="well">
+            <td class="tdRight" colspan="4">
+                <a href="#/cart" title="Ir para o Carrinho" ng-disabled="cart.getTotalCount() < 1">
+                    <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
+                </a>
+            </td>
+        </tr>
+        <tr ng-repeat="product in store.products | orderBy:'name' | filter:search">
+            <td class="tdCenter"><img ng-src="{{product.img}}" alt="{{product.name}}" width="50%"/></td>
+            <td>
+                <a href="#/products/{{product.id}}"><b>{{product.name}}</b></a><br/>
+                {{product.description}}
+            </td>
+            <td class="tdRight">
+                {{product.price | currency }}
+            </td>
+            <td class="tdCenter">
+                <a class="btn btn-success" ng-click="cart.addItem(product.id, product.name, product.price, 1)"
+                   role="button">
+                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                    Comprar
+                </a>
+            </td>
+        </tr>
+        <tr class="well">
+            <td class="tdRight" colspan="4">
+                <a href="#/cart" title="Ir para o Carrinho" ng-disabled="cart.getTotalCount() < 1">
+                    <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
+                </a>
+            </td>
+        </tr>
+    </table>
 </div>
