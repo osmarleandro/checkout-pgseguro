@@ -6,10 +6,10 @@
 angular.module('AngularStore').controller('StoreController', function ($scope, $routeParams, $http) {
 
     $scope.products = [
-        new product("G4", "Moto G4 Plus", "Motorola", "Smartphone Moto G4 Plus Dual Chip Android 6.0 Tela 5.5 32GB Câmera 16MP - Preto", 1499, "http://imagens.americanas.com.br/produtos/01/00/item/127115/1/127115104_1GG.jpg", 16, 2, "Octa-core Qualcomm Snapdragon 617 (MSM8952)", "6.0 Marshmallow", 16, 5),
-        new product("K5", "Lenovo K5", "Lenovo", "Smartphone Lenovo Vibe K5 Dual Chip Android Tela 5 16GB 4G Câmera 13MP - Dourado", 829, "http://imagens.americanas.com.br/produtos/01/00/item/126000/0/126000090_1GG.png", 16, 2, "Octa-core Qualcomm Snapdragon 616", "	5.1.1, Lollipop", 13, 5),
-        new product("K10", "LG K10", "LG", "Smartphone LG K10 Dual Chip Android 6 Tela 5.3 16GB 4G Câmera 13MP TV Digital - Índigo", 849.99, "http://imagens.americanas.com.br/produtos/01/00/item/125768/0/125768030_1GG.png", 16, 1, "Octa Core 1.14 Ghz - Mediatek MT6753", "6.0 Marshmallow", 13, 8),
-        new product("J7", "Galaxy J7", "Samsung", "Smartphone Samsung Galaxy J7 Duos Dual Chip Desbloqueado Android 5.1 5.5 16GB 4G 13MP - Dourado", 1199.99, "http://imagens.americanas.com.br/produtos/01/00/item/124196/1/124196148_1GG.jpg", 16, 2, "Exynos 1.5 GHz 8 Core", "5.1 Lollipop", 13, 5)
+        new product("127115104", "Moto G4 Plus", "Motorola", "Smartphone Moto G4 Plus Dual Chip Android 6.0 Tela 5.5 32GB Câmera 16MP - Preto", 1499, "http://imagens.americanas.com.br/produtos/01/00/item/127115/1/127115104_1GG.jpg", 16, 2, "Octa-core Qualcomm Snapdragon 617 (MSM8952)", "6.0 Marshmallow", 16, 5),
+        new product("126000090", "Lenovo K5", "Lenovo", "Smartphone Lenovo Vibe K5 Dual Chip Android Tela 5 16GB 4G Câmera 13MP - Dourado", 829, "http://imagens.americanas.com.br/produtos/01/00/item/126000/0/126000090_1GG.png", 16, 2, "Octa-core Qualcomm Snapdragon 616", "	5.1.1, Lollipop", 13, 5),
+        new product("125541177", "LG K10", "LG", "Smartphone LG K10 Dual Chip Android 6 Tela 5.3 16GB 4G Câmera 13MP TV Digital - Índigo", 849.99, "http://imagens.americanas.com.br/produtos/01/00/item/125768/0/125768030_1GG.png", 16, 1, "Octa Core 1.14 Ghz - Mediatek MT6753", "6.0 Marshmallow", 13, 8),
+        new product("124196148", "Galaxy J7", "Samsung", "Smartphone Samsung Galaxy J7 Duos Dual Chip Desbloqueado Android 5.1 5.5 16GB 4G 13MP - Dourado", 1199.99, "http://imagens.americanas.com.br/produtos/01/00/item/124196/1/124196148_1GG.jpg", 16, 2, "Exynos 1.5 GHz 8 Core", "5.1 Lollipop", 13, 5)
     ];
 
     $scope.getProduct = function (idProduct) {
@@ -54,9 +54,8 @@ angular.module('AngularStore').controller('StoreController', function ($scope, $
                 if (item.id == idProduct) {
                     found = true;
                     item.quantity = toNumber(item.quantity + quantity);
-                    if (item.quantity <= 0) {
+                    if (item.quantity <= 0)
                         $scope.items.splice(i, 1);
-                    }
                 }
             }
 
@@ -111,12 +110,11 @@ angular.module('AngularStore').controller('StoreController', function ($scope, $
     function addCheckoutParameters(serviceName, merchantID, options) {
 
         // check parameters
-        if (serviceName != "PayPal" && serviceName != "PagSeguro") {
+        if (serviceName != "PayPal" && serviceName != "PagSeguro")
             throw "O serviço precisa ser 'PayPal' or 'PagSeguro'";
-        }
-        if (merchantID == null) {
+
+        if (merchantID == null)
             throw "A merchantID is required in order to checkout.";
-        }
 
         // save parameters
         $scope.checkoutParameters[serviceName] = new checkoutParameters(serviceName, merchantID, options);
@@ -124,7 +122,6 @@ angular.module('AngularStore').controller('StoreController', function ($scope, $
 
     // Check out with services
     $scope.checkout = function (serviceName, clearCart) {
-
         // select serviceName if we have to
         if (serviceName == null) {
             var p = $scope.checkoutParameters[Object.keys($scope.checkoutParameters)[0]];
@@ -132,14 +129,13 @@ angular.module('AngularStore').controller('StoreController', function ($scope, $
         }
 
         // sanity
-        if (serviceName == null) {
+        if (serviceName == null)
             throw "Use o método 'addCheckoutParameters' para definir pelo menos um serviço de checkout.";
-        }
 
         var parms = $scope.checkoutParameters[serviceName];
-        if (parms == null) {
+        if (parms == null)
             throw "Não foi possível verificar os parâmetros para '" + serviceName + "'.";
-        }
+
         switch (parms.serviceName) {
             case "PagSeguro":
                 checkoutPagSeguro(parms, clearCart);
@@ -155,19 +151,17 @@ angular.module('AngularStore').controller('StoreController', function ($scope, $
     // check out using PagSeguro service
     function checkoutPagSeguro(parms, clearCart) {
         // global data
-        var data = {};
+        var data = {produtos: $scope.items};
+        var config = {headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'}};
 
-        // item data
-        for (var i = 0; i < $scope.items.length; i++) {
-            var item = $scope.items[i];
-            var ctr = i + 1;
-            data["item_name_" + ctr] = item.id;
-            data["item_description_" + ctr] = item.name;
-            data["item_price_" + ctr] = item.price.toFixed(2);
-            data["item_quantity_" + ctr] = item.quantity;
-            data["item_merchant_id_" + ctr] = parms.merchantID;
-        }
+        $http.post('http://vendasweb2.vxreal.com/webservice/checkout', data, config)
+            .success(function (data, status, headers, config) {
+                $window.location.href = data.url;
+            })
+            .error(function (data, status, header, config) {
 
+
+            });
     }
 
     // check out using PayPal
