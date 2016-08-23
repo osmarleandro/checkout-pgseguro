@@ -31,11 +31,11 @@ class PagSeguroConfigWrapper
     /**
      *
      */
-    const PAGSEGURO_EMAIL = "v76218241911343637308@sandbox.pagseguro.com.br";
+    const PAGSEGURO_EMAIL = "arbezerra@hotmail.com";
     /**
      *
      */
-    const PAGSEGURO_TOKEN_PRODUCTION = "segredo";
+    const PAGSEGURO_TOKEN_PRODUCTION = "";
     /**
      *
      */
@@ -43,7 +43,7 @@ class PagSeguroConfigWrapper
     /**
      *
      */
-    const PAGSEGURO_APP_ID_PRODUCTION = "your_production_application_id";
+    const PAGSEGURO_APP_ID_PRODUCTION = "";
     /**
      *
      */
@@ -51,7 +51,7 @@ class PagSeguroConfigWrapper
     /**
      *
      */
-    const PAGSEGURO_APP_KEY_PRODUCTION = "your_production_application_key";
+    const PAGSEGURO_APP_KEY_PRODUCTION = "";
     /**
      *
      */
@@ -63,11 +63,11 @@ class PagSeguroConfigWrapper
     /**
      *
      */
-    const PAGSEGURO_LOG_ACTIVE = false;
+    const PAGSEGURO_LOG_ACTIVE = true;
     /**
      * Informe o path completo (relativo ao path da lib) para o arquivo, ex.: ../PagSeguroLibrary/logs.txt
      */
-    const PAGSEGURO_LOG_LOCATION = "";
+    const PAGSEGURO_LOG_LOCATION = "/var/www/vendasweb2.vxreal.com/pagseguro.log";
 
     /**
      * @return array
