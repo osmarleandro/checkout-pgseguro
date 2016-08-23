@@ -3,7 +3,7 @@
 // the storeController contains two objects:
 // - store: contains the product list
 // - cart: the shopping cart object
-angular.module('AngularStore').controller('StoreController', function ($scope, $routeParams, $http) {
+angular.module('AngularStore').controller('StoreController', function ($scope, $routeParams, $http, $window) {
 
     $scope.products = [
         new product("127115104", "Moto G4 Plus", "Motorola", "Smartphone Moto G4 Plus Dual Chip Android 6.0 Tela 5.5 32GB Câmera 16MP - Preto", 1499, "http://imagens.americanas.com.br/produtos/01/00/item/127115/1/127115104_1GG.jpg", 16, 2, "Octa-core Qualcomm Snapdragon 617 (MSM8952)", "6.0 Marshmallow", 16, 5),
