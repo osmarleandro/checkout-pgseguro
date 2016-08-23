@@ -12,12 +12,12 @@
     <table class="table table-bordered">
         <tr class="well">
             <td class="tdRight" colspan="4">
-                <a href="#/cart" title="Ir para o Carrinho" ng-disabled="cart.getTotalCount() < 1">
-                    <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
+                <a href="#/cart" title="Ir para o Carrinho" ng-disabled="getTotalCount() < 1">
+                    <b>{{getTotalCount()}}</b> items, <b>{{getTotalPrice() | currency}}</b>
                 </a>
             </td>
         </tr>
-        <tr ng-repeat="product in store.products | orderBy:'name' | filter:search">
+        <tr ng-repeat="product in products | orderBy:'name' | filter:search">
             <td class="tdCenter"><img ng-src="{{product.img}}" alt="{{product.name}}" width="50%"/></td>
             <td>
                 <a href="#/products/{{product.id}}"><b>{{product.name}}</b></a><br/>
@@ -27,7 +27,7 @@
                 {{product.price | currency }}
             </td>
             <td class="tdCenter">
-                <a class="btn btn-success" ng-click="cart.addItem(product.id, product.name, product.price, 1)"
+                <a class="btn btn-success" ng-click="addItem(product.id, product.name, product.price, 1)"
                    role="button">
                     <span class="glyphicon glyphicon-shopping-cart"></span>
                     Comprar
@@ -36,8 +36,8 @@
         </tr>
         <tr class="well">
             <td class="tdRight" colspan="4">
-                <a href="#/cart" title="Ir para o Carrinho" ng-disabled="cart.getTotalCount() < 1">
-                    <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
+                <a href="#/cart" title="Ir para o Carrinho" ng-disabled="getTotalCount() < 1">
+                    <b>{{getTotalCount()}}</b> items, <b>{{getTotalPrice() | currency}}</b>
                 </a>
             </td>
         </tr>

@@ -2,47 +2,23 @@
 
 // App Module: the name AngularStore matches the ng-app attribute in the main <html> tag
 // the route provides parses the URL and injects the appropriate partial page
-var storeApp = angular.module('AngularStore', ['ngRoute', 'ui.bootstrap']).config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.when('/store', {
-        templateUrl: 'templates/store.html',
-        controller: storeController
+angular.module('AngularStore', ['ngRoute', 'ui.bootstrap'])
 
-    }).when('/products/:productId', {
-        templateUrl: 'templates/product.html',
-        controller: storeController
+    .config(['$routeProvider', function ($routeProvider) {
 
-    }).when('/cart', {
-        templateUrl: 'templates/shoppingCart.html',
-        controller: storeController
+        $routeProvider.when('/store', {
+            templateUrl: 'templates/store.html',
+            controller: 'StoreController'
 
-    }).otherwise({
-        redirectTo: '/store'
-    });
-}]);
+        }).when('/products/:productId', {
+            templateUrl: 'templates/product.html',
+            controller: 'StoreController'
 
-// create a data service that provides a store and a shopping cart that
-// will be shared by all views (instead of creating fresh ones for each view).
-storeApp.factory("DataService", function () {
+        }).when('/cart', {
+            templateUrl: 'templates/shoppingCart.html',
+            controller: 'StoreController'
 
-    // create store
-    var myStore = new store();
-
-    // create shopping cart
-    var myCart = new shoppingCart("AngularStore");
-
-    // enable PayPal checkout
-    // note: the second parameter identifies the merchant; in order to use the 
-    // shopping cart with PayPal, you have to create a merchant account with 
-    // PayPal. You can do that here:
-    // https://www.paypal.com/webapps/mpp/merchant
-    myCart.addCheckoutParameters("PayPal", "paypaluser@youremail.com");
-
-    // enable PagSeguro checkout
-    myCart.addCheckoutParameters("PagSeguro", "pagsegurouser@pagseguro.com.br");
-
-    // return data object with store and cart
-    return {
-        store: myStore,
-        cart: myCart
-    };
-});
+        }).otherwise({
+            redirectTo: '/store'
+        });
+    }]);

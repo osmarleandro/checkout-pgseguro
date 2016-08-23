@@ -6,11 +6,11 @@
 
                 <tr class="well">
                     <td class="tdRight" colspan="3">
-                        <a href="#/cart" title="Ir para o carrinho" ng-disabled="cart.getTotalCount() < 1">
+                        <a href="#/cart" title="Ir para o carrinho" ng-disabled="getTotalCount() < 1">
                             <i class="icon-shopping-cart"/>
-                            <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
+                            <b>{{getTotalCount()}}</b> items, <b>{{getTotalPrice() | currency}}</b>
 
-                        </a><span ng-show="cart.getTotalCount(product.id) > 0"><br/>Este item já esta no carrinho</span>
+                        </a><span ng-show="getTotalCount(product.id) > 0"><br/>Este item já esta no carrinho</span>
                     </td>
                 </tr>
 
@@ -75,13 +75,13 @@
         <div class="col-md-4">
             <button
                     class="btn btn-block btn-success"
-                    ng-click="cart.addItem(product.id, product.name, product.price, 1)">
+                    ng-click="addItem(product.id, product.name, product.price, 1)">
                 <span class="glyphicon glyphicon-shopping-cart"></span> Add ao Carrinho
             </button>
             <button
                     class="btn btn-block btn-danger"
-                    ng-click="cart.addItem(product.id, product.name, product.price, -10000)"
-                    ng-disabled="cart.getTotalCount(product.id) < 1">
+                    ng-click="addItem(product.id, product.name, product.price, -10000)"
+                    ng-disabled="getTotalCount(product.id) < 1">
                 <i class="icon-trash icon-white"/> Remover do Carrinho
             </button>
             <button
